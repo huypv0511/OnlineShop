@@ -25,12 +25,12 @@ namespace MVCDemo.Areas.Admin.Controllers
                 var result = dao.Login(model.UserName, Encryption.MD5Hash(model.PassWord));
                 if (result)
                 {
-                    var user = dao.GetById(model.UserName);
+                    var user = dao.GetByUserName(model.UserName);
                     var userSession = new UserLogin();
                     userSession.UserName = user.Username;
                     userSession.UserID = user.ID;
                     Session.Add(CommonConstants.USER_SESSION, userSession);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Admin");
                 }
             }
             else 

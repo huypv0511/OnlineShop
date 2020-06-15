@@ -9,6 +9,7 @@ namespace Model.EF
     [Table("User")]
     public partial class User
     {
+       
         public int ID { get; set; }
 
         [Required]
@@ -33,6 +34,9 @@ namespace Model.EF
 
         [Column(TypeName = "datetime2")]
         public DateTime? Datetime { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime? Date { get; set; }
 
         public bool? Permission { get; set; }
 

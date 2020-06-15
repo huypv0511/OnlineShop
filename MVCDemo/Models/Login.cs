@@ -14,4 +14,6 @@ namespace MVCDemo.Models
         public string PassWord { set; get; }
         public bool RememberMe { set; get; }
     }
+
+    
 }

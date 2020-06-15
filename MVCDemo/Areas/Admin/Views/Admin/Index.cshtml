@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<html dir="ltr" lang="en-US">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+    <title>Admin Huy Huế Fruits</title>
+</head>
+<body class="stretched">
+    <div id="page-menu" class="no-sticky">
+
+        <div id="page-menu-wrap">
+
+            <div class="container clearfix">
+
+                <div class="menu-title">Trang <span>Quản trị</span></div>
+
+                <nav>
+                    <ul>
+                        <li><a href="@Url.Action("ListUser","Admin")"><div>Tài khoản</div></a></li>
+                        <li><a href="portfolio-nomargin.html"><div>Hàng hóa</div></a></li>
+                        <li><a href="portfolio-notitle.html"><div>Thể loại</div></a></li>
+                        <li><a href="portfolio-title-overlay.html"><div>Đơn hàng</div></a></li>
+                        <li><a href="portfolio-fullwidth.html"><div>Khiếu nại</div></a></li>
+                        <li><a href="portfolio-fullwidth-notitle.html"><div>Thống kê</div></a></li>
+                    </ul>
+                </nav>
+
+                <div id="page-submenu-trigger"><i class="icon-reorder"></i></div>
+
+            </div>
+
+        </div>
+
+    </div><!-- #page-menu end -->
+    <section id="page-title">
+
+        <div class="container clearfix">
+            <h1>Chào mừng !</h1>
+            <span>Đến với trang quản trị nơi quản lý tài nguyên website</span>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Quản trị</li>
+            </ol>
+        </div>
+
+    </section><!-- #page-title end -->
+</body>
+</html>
+
