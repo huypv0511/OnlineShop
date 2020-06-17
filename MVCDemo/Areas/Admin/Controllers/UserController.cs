@@ -11,7 +11,7 @@ using MVCDemo.Common;
 
 namespace MVCDemo.Areas.Admin.Controllers
 {
-    public class AdminController : Controller
+    public class UserController : Controller
     {
         // GET: Admin/Admin
         public ActionResult Index()
@@ -24,12 +24,18 @@ namespace MVCDemo.Areas.Admin.Controllers
             var lst = dao.ListUser();
             return View(lst);
         }
+
         [HttpDelete]
         public ActionResult Delete(int id)
         {
             var dao = new UserDao();
             dao.Delete(id);
-            return RedirectToAction("ListUser", "Admin");
+            return RedirectToAction("ListUser", "User");
+        }
+        public ActionResult Edit(int id)
+        {
+            var user = new UserDao().ViewDetail(id);
+            return View(user);
         }
         [HttpPost]
         public ActionResult Edit(User user, int? id)
@@ -40,22 +46,16 @@ namespace MVCDemo.Areas.Admin.Controllers
                 var encryptedMd5Pas = Encryption.MD5Hash(user.Password);
                 user.Password = encryptedMd5Pas;
             }
-            if (user.Address == null || user.Email == null || user.Fullname == null || user.SDT == null)
+            var result = dao.Update(user, id);
+            if (result)
+            {
+                return Json(new { isok = true, message = "Your Message" });
+                //return RedirectToAction("ListUser", "Admin");
+            }
+            else
             {
                 return Json(new { isok = false, message = "Your Message" });
             }
-            else {
-                var result = dao.Update(user, id);
-                if (result)
-                {
-                    return Json(new { isok = true, message = "Your Message" });
-                    //return RedirectToAction("ListUser", "Admin");
-                }
-                else
-                {
-                    return Json(new { isok = false, message = "Your Message" });
-                }
-            }          
         }
     }
 }

@@ -30,7 +30,7 @@ namespace MVCDemo.Areas.Admin.Controllers
                     userSession.UserName = user.Username;
                     userSession.UserID = user.ID;
                     Session.Add(CommonConstants.USER_SESSION, userSession);
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Index", "User");
                 }
             }
             else 

@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Model.EF.User>
-<!DOCTYPE html>
 @{
     ViewBag.Title = "UserList";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -23,7 +22,7 @@
                 <nav>
                     <ul>
                         <li class="current"><a href="#"><div>Tài khoản</div></a></li>
-                        <li><a href="portfolio-nomargin.html"><div>Hàng hóa</div></a></li>
+                        <li><a href="@Url.Action("ListProduct","Product")"><div>Sản phẩm</div></a></li>
                         <li><a href="portfolio-notitle.html"><div>Thể loại</div></a></li>
                         <li><a href="portfolio-title-overlay.html"><div>Đơn hàng</div></a></li>
                         <li><a href="portfolio-fullwidth.html"><div>Khiếu nại</div></a></li>
@@ -44,7 +43,7 @@
             <h1>Chào mừng !</h1>
             <span>Đến với trang quản trị nơi quản lý tài nguyên website</span>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Quản trị</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Index","User")">Quản trị</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Tài khoản</li>
             </ol>
         </div>
@@ -88,14 +87,15 @@
                                     <td>@item.Address</td>
                                     <td>@item.Datetime</td>
                                     <td>
+                                      <a href="/Admin/User/Edit/@item.ID">Sửa</a>|
                                         @Ajax.ActionLink("Xoá", "Delete", new { @id = item.ID }, new AjaxOptions
                                 {
                                     Confirm = "Bạn có muốn xóa bản ghi này??",
                                     OnComplete = "window.location.reload()",
                                     HttpMethod = "Delete"
-                                })|
-                                        <a href="@*/Admin/Admin/Edit1/@item.ID*@" data-toggle="modal" data-target="#myModal">Sửa</a>
-                                        @Html.Partial("~/Areas/Admin/Views/Admin/Edit.cshtml", new ViewDataDictionary { { "id", item.ID } })
+                                })
+                                        @*<a href="" data-toggle="modal" data-target="#myModal">Sửa</a>
+                                        @Html.Partial("~/Areas/Admin/Views/User/Edit.cshtml", new ViewDataDictionary { { "id", item.ID } })*@
                                     </td>
 
                                 </tr>

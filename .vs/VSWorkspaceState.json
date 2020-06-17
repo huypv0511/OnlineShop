@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\MVCDemo",
+    "\\MVCDemo\\Areas",
+    "\\MVCDemo\\Areas\\Admin",
+    "\\MVCDemo\\Areas\\Admin\\Views",
+    "\\MVCDemo\\Areas\\Admin\\Views\\Product"
+  ],
+  "SelectedNode": "\\MVCDemo\\Areas\\Admin\\Views\\Product\\ListProduct.cshtml",
+  "PreviewInSolutionExplorer": false
+}

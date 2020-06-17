@@ -1,0 +1,146 @@
+﻿@model Model.EF.User
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<html dir="ltr" lang="en-US">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+    <title>Admin Huy Huế Fruits</title>
+</head>
+<body class="stretched">
+    <div id="page-menu" class="no-sticky">
+
+        <div id="page-menu-wrap">
+
+            <div class="container clearfix">
+
+                <div class="menu-title">Trang <span>Quản trị</span></div>
+
+                <nav>
+                    <ul>
+                        <li><a href="@Url.Action("ListUser","User")"><div>Tài khoản</div></a></li>
+                        <li><a href="@Url.Action("ListProduct","Product")"><div>Hàng hóa</div></a></li>
+                        <li><a href="portfolio-notitle.html"><div>Thể loại</div></a></li>
+                        <li><a href="portfolio-title-overlay.html"><div>Đơn hàng</div></a></li>
+                        <li><a href="portfolio-fullwidth.html"><div>Khiếu nại</div></a></li>
+                        <li><a href="portfolio-fullwidth-notitle.html"><div>Thống kê</div></a></li>
+                    </ul>
+                </nav>
+
+                <div id="page-submenu-trigger"><i class="icon-reorder"></i></div>
+
+            </div>
+
+        </div>
+
+    </div><!-- #page-menu end -->
+    <section id="page-title">
+        <div class="container clearfix">
+            <h1>Chỉnh sửa thông tin người dùng!</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index","User")">Quản trị</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("ListUser","User")">Tài khoản</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa</li>
+            </ol>
+        </div>
+    </section><!-- #page-title end -->
+
+    <section id="content">
+
+
+        <div class="accordion accordion-lg divcenter nobottommargin clearfix" style="max-width: 550px;">
+            <div class="acctitle">@*<i class="acc-closed icon-user4"></i><i class="acc-open icon-ok-sign"></i>Chỉnh sửa thông tin? Hãy cân nhắc*@</div>
+            <div class="acc_content clearfix">
+                @using (Ajax.BeginForm("Edit", "User", new AjaxOptions { HttpMethod = "POST", OnSuccess = "ShowSuccess" }))
+                {
+                    @Html.ValidationSummary(false, "", new { @class = "custom-validation-summary" })
+                    <input type="hidden" id="id" name="id" value="@Model.ID" />
+                    <div class="col_full">
+                        <label for="register-form-username" id="oldUserMess">Tài khoản:&nbsp;</label>
+                        <label for="register-form-username" id="userMess" style="color:red"></label>
+                        @Html.TextBoxFor(model => model.Username, new
+                        {
+                            id = "register-form-username",
+                            name = "register-form-username",
+                            @class = "form-control",@*@placeholder = @user.Username,*@ @readonly = "readonly"
+                        })
+                    </div>
+                    <div class="col_full">
+                        <label for="register-form-password" id="oldpass">Mật khẩu:</label>
+                        <label for="register-form-password" id="pass" style="color:red"></label>
+                        @Html.PasswordFor(model => model.Password, new { id = "register-form-password", name = "register-form-password", @class = "form-control", @placeholder = "••••••••••", @readonly = "readonly", @Autocomplete = "off" })
+                    </div>
+                    <div class="col_full">
+                        <label for="register-form-name">Họ và tên:</label>
+                        @Html.TextBoxFor(model => model.Fullname, new
+                        {
+                            id = "register-form-name",
+                            name = "register-form-name",
+                            @class = "form-control"@*, @placeholder = @user.Fullname*@})
+                    </div>
+                    <div class="col_full">
+                        <label for="register-form-name">Địa chỉ:</label>
+                        @Html.TextBoxFor(model => model.Address, new
+                        {
+                            id = "register-form-address",
+                            name = "register-form-address",
+                            @class = "form-control"@*, @placeholder = @user.Address*@})
+                    </div>
+                    <div class="col_full">
+                        <label for="register-form-email" id="oldemail">Địa chỉ Email:</label>
+                        <label for="register-form-email" id="email" style="color:red"></label>
+                        @Html.TextBoxFor(model => model.Email, new
+                        {
+                            id = "register-form-email",
+                            name = "register-form-email",
+                            @class = "form-control"@*, @placeholder = @user.Email*@})
+                    </div>
+                    <div class="col_full">
+                        <label for="register-form-phone" id="oldphone">Số điện thoại:</label>
+                        <label for="register-form-phone" id="phone" style="color:red"></label>
+                        @Html.TextBoxFor(model => model.SDT, new
+                        {
+                            id = "register-form-phone",
+                            name = "register-form-phone",
+                            @class = "form-control"@*, @maxlength = "12", @placeholder = @user.SDT*@})
+                    </div>
+                    <button id="success" type="submit" class="btn btn-primary">Lưu lại</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                }
+            </div>
+
+        </div>
+
+    </section>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#register-form-phone").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                return false;
+            }
+        });
+    });
+
+    function ShowSuccess(data) {
+        if (data.isok == true) {
+            $('#success').attr({
+                'data-notify-type': 'success',
+                'data-notify-msg': '<i class=icon-ok-sign></i> Chỉnh sửa thành công!'
+            });
+            SEMICOLON.widget.notifications('#success');
+            window.setTimeout(function () { window.location.reload() }, 3000);
+        } else {
+            $('#success').attr({
+                'data-notify-type': 'error',
+                'data-notify-msg': '<i class=icon-remove-sign></i> Chỉnh sửa không thành công!'
+            })
+            SEMICOLON.widget.notifications('#success');
+        }
+    }
+</script>
