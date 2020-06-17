@@ -50,8 +50,6 @@
     </section><!-- #page-title end -->
 
     <section id="content">
-
-
         <div class="accordion accordion-lg divcenter nobottommargin clearfix" style="max-width: 550px;">
             <div class="acctitle">@*<i class="acc-closed icon-user4"></i><i class="acc-open icon-ok-sign"></i>Chỉnh sửa thông tin? Hãy cân nhắc*@</div>
             <div class="acc_content clearfix">
@@ -66,8 +64,8 @@
                         {
                             id = "register-form-username",
                             name = "register-form-username",
-                            @class = "form-control",@*@placeholder = @user.Username,*@ @readonly = "readonly"
-                        })
+                            @class = "form-control",@*@placeholder = @user.Username,*@@readonly = "readonly"
+})
                     </div>
                     <div class="col_full">
                         <label for="register-form-password" id="oldpass">Mật khẩu:</label>
@@ -109,7 +107,7 @@
                             @class = "form-control"@*, @maxlength = "12", @placeholder = @user.SDT*@})
                     </div>
                     <button id="success" type="submit" class="btn btn-primary">Lưu lại</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <a href="@Url.Action("ListUser","User")" class="btn btn-secondary" data-dismiss="modal">Trở lại</a>
                 }
             </div>
 

@@ -1,0 +1,196 @@
+﻿@model MVCDemo.Models.Register
+
+
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Thêm</button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Thông tin người dùng</h4>
+                </div>
+                @using (Ajax.BeginForm("Add", "User", new AjaxOptions { HttpMethod = "POST", OnSuccess = "ShowSuccess", InsertionMode = InsertionMode.Replace }, new { id = "register-form", name = "register-form", @class = "nobottommargin" }))
+                {
+                    <div class="modal-body">
+                        @Html.ValidationSummary(false, "", new { @class = "custom-validation-summary" })
+                        @*@Html.ValidationSummary("",true)*@
+                        <div class="col_full">
+                            <label for="register-form-username" id="oldUserMess">Tài khoản:&nbsp;</label>
+                            <label for="register-form-username" id="userMess" style="color:red"></label>
+                            @Html.TextBoxFor(model => model.UserName, new { id = "register-form-username", name = "register-form-username", @class = "form-control", @onchange = "userNameChange()" })
+                        </div>
+                        <div class="col_full">
+                            <label for="register-form-password" id="oldpass">Mật khẩu:</label>
+                            <label for="register-form-password" id="pass" style="color:red"></label>
+                            @Html.PasswordFor(model => model.PassWord, new { id = "register-form-password", name = "register-form-password", @class = "form-control", @onchange = "passWordChange()" })
+                        </div>
+                        <div class="col_full">
+                            <label for="register-form-repassword" id="oldrepassword">Xác nhận mật khẩu:</label>
+                            <label for="register-form-repassword" id="repassword" style="color:red"></label>
+                            @Html.PasswordFor(model => model.ConfirmPassword, new { id = "register-form-repassword", name = "register-form-repassword", @class = "form-control", @onchange = "confirmPass()" })
+                        </div>
+                        <div class="col_full">
+                            <label for="register-form-name">Họ và tên:</label>
+                            @Html.TextBoxFor(model => model.Name, new { id = "register-form-name", name = "register-form-name", @class = "form-control", @onchange = "nameChange()" })
+                        </div>
+                        <div class="col_full">
+                            <label for="register-form-email" id="oldemail">Địa chỉ Email:</label>
+                            <label for="register-form-email" id="email" style="color:red"></label>
+                            @Html.TextBoxFor(model => model.Email, new { id = "register-form-email", name = "register-form-email", @class = "form-control", @onchange = "emailChange()" })
+                        </div>
+                        <div class="col_full">
+                            <label for="register-form-phone" id="oldphone">Số điện thoại:</label>
+                            <label for="register-form-phone" id="phone" style="color:red"></label>
+                            @Html.TextBoxFor(model => model.Phone, new { id = "register-form-phone", name = "register-form-phone", @class = "form-control", @maxlength = "12", @onchange = "phoneChange()" })
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id ="success" type="submit" class="btn btn-primary">Thêm</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#register-form-phone").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                return false;
+            }
+        });
+    });
+    function ShowSuccess(data) {
+        if (data.isok == true) {
+            $('#success').attr({
+                'data-notify-type': 'success',
+                'data-notify-msg': data.message
+            });
+            SEMICOLON.widget.notifications('#success');
+            window.setTimeout(function () { window.location.reload() }, 3000);
+        } else {
+            $('#success').attr({
+                'data-notify-type': 'error',
+                'data-notify-msg': data.message
+            })
+            SEMICOLON.widget.notifications('#success');
+        }
+    }
+
+    function userNameChange() {
+        var textval = document.getElementById("register-form-username");
+        if (textval.value.length > 5) {
+
+            $("#register-form-username").focus();
+            $("#register-form-username").css("border-color", "green");
+            document.getElementById('oldUserMess').style.display = "block";
+            document.getElementById('userMess').style.display = "none";
+
+        } else {
+
+            $("#register-form-username").focus();
+            $("#register-form-username").css("border-color", "red");
+            document.getElementById('oldUserMess').style.display = "none";
+            document.getElementById('userMess').style.display = "block";
+            document.getElementById('userMess').innerHTML = "Tài khoản tối thiểu 6 ký tự";
+        }
+    }
+
+    function passWordChange() {
+        var textval = document.getElementById("register-form-password");
+        if (textval.value.length > 5) {
+            $("#register-form-password").focus();
+            $("#register-form-password").css("border-color", "green");
+            document.getElementById('oldpass').style.display = "block";
+            document.getElementById('pass').style.display = "none";
+        } else
+        {
+            $("#register-form-password").focus();
+            $("#register-form-password").css("border-color", "red");
+            document.getElementById('oldpass').style.display = "none";
+            document.getElementById('pass').style.display = "block";
+            document.getElementById('pass').innerHTML = "Mật khẩu tối thiểu 6 ký tự";
+        }
+    }
+
+    function confirmPass() {
+        var textval1 = document.getElementById("register-form-password");
+        var textval = document.getElementById("register-form-repassword");
+        if (textval1.value == textval.value) {
+            $("#register-form-repassword").focus();
+            $("#register-form-repassword").css("border-color", "green");
+            document.getElementById('oldrepassword').style.display = "block";
+            document.getElementById('repassword').style.display = "none";
+        } else
+        {
+            $("#register-form-repassword").focus();
+            $("#register-form-repassword").css("border-color", "red");
+            document.getElementById('oldrepassword').style.display = "none";
+            document.getElementById('repassword').style.display = "block";
+            document.getElementById('repassword').innerHTML = "Mật khẩu không trùng khớp";
+        }
+    }
+
+    function nameChange() {
+        $("#register-form-name").focus();
+        $("#register-form-name").css("border-color", "green");
+    }
+
+    function emailChange() {
+        var textval = document.getElementById("register-form-email");
+        if (textval.value.length == 0)
+        {
+            $("#register-form-email").focus();
+            $("#register-form-email").css("border-color", "red");
+            document.getElementById('oldemail').style.display = "none";
+            document.getElementById('email').style.display = "block";
+            document.getElementById('email').innerHTML = "Email không được để trống";
+        }
+        if (validateEmail(textval.value)) {
+            $("#register-form-email").focus();
+            $("#register-form-email").css("border-color", "green");
+            document.getElementById('oldemail').style.display = "block";
+            document.getElementById('email').style.display = "none";
+        } else
+        {
+            $("#register-form-email").focus();
+            $("#register-form-email").css("border-color", "red");
+            document.getElementById('oldemail').style.display = "none";
+            document.getElementById('email').style.display = "block";
+            document.getElementById('email').innerHTML = "Email không hợp lệ";
+        }
+
+    }
+
+    function phoneChange() {
+        var textval = document.getElementById("register-form-phone");
+        if (textval.value.length > 10) {
+            $("#register-form-phone").focus();
+            $("#register-form-phone").css("border-color", "green");
+            document.getElementById('oldphone').style.display = "block";
+            document.getElementById('phone').style.display = "none";
+        } else
+        {
+            $("#register-form-phone").focus();
+            $("#register-form-phone").css("border-color", "red");
+            document.getElementById('oldphone').style.display = "none";
+            document.getElementById('phone').style.display = "block";
+            document.getElementById('phone').innerHTML = "Số điện thoại tối thiểu 10 chữ số";
+        }
+    }
+
+    function validateEmail(Email) {
+        var expr = /^(([^<>()\[\]\\.,;:\s@('@')"]+(\.[^<>()\[\]\\.,;:\s@('@')"]+)*)|(".+"))@('@')((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (expr.test(Email)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+</script>

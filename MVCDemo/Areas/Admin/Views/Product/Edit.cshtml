@@ -12,11 +12,11 @@
     <title>Admin Huy Huế Fruits</title>
     <style>
         .imgfix {
-            position: fixed;
+            position: absolute;
             display: block;
             max-width: 350px;
             max-height: 262px;
-            left: -350px;
+            left: -340px;
             top: auto;
         }
     </style>
@@ -107,7 +107,7 @@
                         @Html.TextBoxFor(model => model.ViewCount, new { id = "register-form-email", name = "register-form-email", @class = "form-control", @readonly = "readonly" })
                     </div>
                     <button id="success" type="submit" class="btn btn-primary">Lưu lại</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <a href="@Url.Action("ListProduct","Product")" class="btn btn-secondary" data-dismiss="modal">Trở lại</a>
                 }
             </div>
 

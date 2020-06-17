@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Model.Dao;
 using MVCDemo.Areas.Admin.Models;
 using MVCDemo.Common;
+using MVCDemo.Models;
 
 namespace MVCDemo.Areas.Admin.Controllers
 {
@@ -36,6 +37,46 @@ namespace MVCDemo.Areas.Admin.Controllers
             var prodcate = new ProductCategoryDao().ViewDetail(prod.CategoryID);
             SetViewBag(prodcate.Name);
             return View(prod);
+        }
+        public ActionResult Add()
+        {
+            var daocate = new ProductCategoryDao();
+            ViewBag.CategoryID = new SelectList(daocate.ListProductCategory(), "ID", "NAME");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Add(ProductModel model, HttpPostedFileBase imgfile)
+        {
+            if (ModelState.IsValid)
+            {
+                var check = new ProductDao().CheckName(model.Name);
+                if(check == null)
+                {
+                    var imgPath = Encryption.SaveImg(imgfile);
+                    var imgsrc = "/Content/images/hoaqua/" + imgPath;
+                    var dao = new ProductDao();
+                    var prod = new Product();
+                    prod.Name = model.Name;
+                    prod.CategoryID = model.CategoryID;
+                    prod.Price = model.Price;
+                    prod.PromotionPice = model.PromotionPice;
+                    prod.Quantity = model.Quantity;
+                    prod.ViewCount = 0;
+                    prod.Image = imgsrc;
+                    dao.Add(prod);
+                    return Json(new { isok = true, message = "Thêm thành công !" });
+                }
+                else
+                {
+                    return Json(new { isok = false, message = "Sản phẩm đã tồn tại." });
+                }
+
+            }
+            else 
+            {
+                return Json(new { isok = false, message = "Your Message" });
+            }
         }
         [HttpPost]
         public ActionResult Edit(Product prod, int id, HttpPostedFileBase imgfile)

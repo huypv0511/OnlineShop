@@ -19,6 +19,10 @@ namespace Model.Dao
             db.Product.Add(entity);
             db.SaveChanges();
         }
+        public Product CheckName(string name)
+        {
+            return db.Product.SingleOrDefault(x => x.Name == name);
+        }
         public List<Product> ListProduct()
         {
             return db.Product.ToList();

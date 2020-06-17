@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Model.Dao;
 using MVCDemo.Areas.Admin.Models;
 using MVCDemo.Common;
-
+using MVCDemo.Models;
 
 namespace MVCDemo.Areas.Admin.Controllers
 {
@@ -36,6 +36,42 @@ namespace MVCDemo.Areas.Admin.Controllers
         {
             var user = new UserDao().ViewDetail(id);
             return View(user);
+        }
+        [HttpPost]
+        public ActionResult Add(Register model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var dao = new UserDao();
+                var UserName = dao.GetByUserName(model.UserName);
+                var Email = dao.GetByEmail(model.Email);
+
+                if (UserName != null)
+                {
+                    return Json(new { isok = false, message = "Tài khoản đã được sử dụng" });
+                }
+                else if (Email != null)
+                {
+                    return Json(new { isok = false, message = "Email đã được sử dụng" });
+                }
+                else
+                {
+                    var user = new User();
+                    user.Username = model.UserName;
+                    user.Password = Encryption.MD5Hash(model.PassWord);
+                    user.SDT = model.Phone;
+                    user.Email = model.Email;
+                    user.Fullname = model.Name;
+                    user.Datetime = DateTime.Now;
+                    user.Permission = false;
+                    user.Status = true;
+                    dao.Add(user);
+
+                    return Json(new { isok = true, message = "Thêm thành công!" });
+                }
+            }
+            return Json(new { isok = false, message = "Thêm thất bại !" }); ;
         }
         [HttpPost]
         public ActionResult Edit(User user, int? id)

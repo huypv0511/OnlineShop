@@ -5,6 +5,7 @@ C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\bin\Debug\EntityFramewor
 C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\bin\Debug\EntityFramework.xml
 C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\obj\Debug\Model.csprojAssemblyReference.cache
 C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\obj\Debug\Model.dll
