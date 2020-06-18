@@ -46,7 +46,7 @@ namespace Model.Dao
         {
             try
             {
-                if (imgsrc != null)
+                if (imgsrc != "/Content/images/hoaqua/")
                 {
                     var pro = db.Product.Find(id);
                     pro.Name = entity.Name;

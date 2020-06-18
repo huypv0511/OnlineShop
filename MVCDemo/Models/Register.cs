@@ -24,6 +24,10 @@ namespace MVCDemo.Models
         public string ConfirmPassword { get; set; }
         [Required(ErrorMessage = "Bạn chưa nhập Họ và tên")]
         public string Name { get; set; }
+
+
+        public string Address { get; set; }
+
         [Required(ErrorMessage = "Bạn chưa nhập số điện thoại.")]
         [StringLength(12, ErrorMessage = "Số điện thoại tối đa {1} và tối thiểu {2} ký tự.", MinimumLength = 10)]
         [DataType(DataType.PhoneNumber)]

@@ -10,3 +10,15 @@ C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\obj\Debug\Model.csproj.C
 C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\obj\Debug\Model.dll
 C:\Users\admin\Desktop\WEB\Git\OnlineShop\MVCDemo\Model\obj\Debug\Model.pdb
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\bin\Debug\Model.dll.config
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\bin\Debug\Model.dll
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\bin\Debug\Model.pdb
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\bin\Debug\EntityFramework.dll
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\bin\Debug\EntityFramework.xml
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\obj\Debug\Model.csproj.CopyComplete
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\obj\Debug\Model.dll
+C:\Users\huyho\OneDrive\Desktop\OnlineShopLOU\Model\obj\Debug\Model.pdb

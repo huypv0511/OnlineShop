@@ -82,8 +82,15 @@ namespace MVCDemo.Areas.Admin.Controllers
         public ActionResult Edit(Product prod, int id, HttpPostedFileBase imgfile)
         {
             var dao = new ProductDao();
+
             var imgPath = Encryption.SaveImg(imgfile);
+
             var imgsrc = "/Content/images/hoaqua/"+imgPath;
+            if (imgsrc == "/Content/images/hoaqua/")
+            {
+
+            }
+
             var result = dao.Update(prod, id,imgsrc);
             if (result)
             {

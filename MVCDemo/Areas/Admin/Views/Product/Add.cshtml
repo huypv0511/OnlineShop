@@ -1,7 +1,7 @@
 ﻿@model MVCDemo.Models.ProductModel
 
 
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Thêm</button>
+<button id ="hehe" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Thêm</button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-body">
@@ -27,7 +27,11 @@
                 <div class="col_full">
                     <label for="register-form-repassword" id="oldrepassword">Thể loại:</label>
                     <label for="register-form-repassword" id="repassword" style="color:red"></label>
-                    @Html.DropDownListFor(model => model.CategoryID, null,null, new { @class = "form-control", id = "exampleFormControlSelect1" })
+                    @Html.DropDownListFor(model => model.CategoryID, null, null, new { @class = "form-control", id = "exampleFormControlSelect1" })
+                </div>
+                <div class="col_full">
+                    <label for="register-form-name">Số lượng:</label>
+                    @Html.TextBoxFor(model => model.Quantity, new { id = "register-form-quantity", name = "register-form-name", @class = "form-control" })
                 </div>
                 <div class="col_full">
                     <label for="register-form-name">Giá:</label>
@@ -58,6 +62,11 @@
                 return false;
             }
         });
+        $("#register-form-quantity").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                return false;
+            }
+        });
         $("#input-11").fileinput({
             showUpload: false,
             maxFileCount: 10,
@@ -80,7 +89,7 @@
                 'data-notify-msg': data.message
             });
             SEMICOLON.widget.notifications('#success');
-            window.setTimeout(function () { window.location.reload() }, 3000);
+            window.setTimeout(function () { window.location.reload() }, 2000);
         } else {
             $('#success').attr({
                 'data-notify-type': 'error',

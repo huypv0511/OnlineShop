@@ -142,14 +142,19 @@
         });
     function CheckDelete(data) {
         if (data.isok == true) {
-            window.location.reload();
+            $('#hehe').attr({
+                'data-notify-type': 'success',
+                'data-notify-msg': '<i class=icon-remove-sign></i> Xóa thành công.!'
+            })
+            SEMICOLON.widget.notifications('#hehe');
+            window.setTimeout(function () { window.location.reload() }, 2000);
         }
         else {
-            $('#delete').attr({
+            $('#hehe').attr({
                 'data-notify-type': 'error',
                 'data-notify-msg': '<i class=icon-remove-sign></i> Không thể xóa sản phẩm đang có đơn hàng.!'
             })
-            SEMICOLON.widget.notifications('#delete');
+            SEMICOLON.widget.notifications('#hehe');
         }
     }
     @*function postdata(e){

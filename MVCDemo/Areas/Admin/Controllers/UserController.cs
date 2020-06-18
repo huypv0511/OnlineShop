@@ -62,6 +62,7 @@ namespace MVCDemo.Areas.Admin.Controllers
                     user.Password = Encryption.MD5Hash(model.PassWord);
                     user.SDT = model.Phone;
                     user.Email = model.Email;
+                    user.Address = model.Address;
                     user.Fullname = model.Name;
                     user.Datetime = DateTime.Now;
                     user.Permission = false;
